@@ -62,7 +62,7 @@ function pokaziRecepte() {
 /\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
 */
 function narediPDF(id) {
-    
+    fetch()
     var props = {
 
         naziv: {},
@@ -71,7 +71,7 @@ function narediPDF(id) {
     
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
         returnJsPDFDocObject: true,
-        fileName: "Invoice 2021",
+        fileName: "Recept",
         orientationLandscape: false,
         compress: true,
         logo: {
