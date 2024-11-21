@@ -61,13 +61,26 @@ function pokaziRecepte() {
 .........................ZA PDF.........................
 /\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
 */
-function narediPDF(id) {
-    fetch()
-    var props = {
+async function   narediPDF(id) {
+   await fetch(`http://localhost:5000/recepti/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
 
-        naziv: {},
-        sestavine: {},
-        potekDela: {},
+            let nazivpdf = data.naziv;
+            let sestavinepdf = data.sestavine;
+            let potekDelapfd = data.potekdela;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    
+    
+           
+
+    let props = {
+
+        naziv: {naziv},
+        sestavine: {sestavine},
+        potekDela: {potekdela},
     
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
         returnJsPDFDocObject: true,

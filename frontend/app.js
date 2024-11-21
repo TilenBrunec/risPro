@@ -45,7 +45,7 @@ app.get('/recepti', (req, res) => {
 });
 
 // za single recept
-app.get('/:id', (req, res) => {
+app.get('/recepti/:id', (req, res) => {
     pool.getConnection((err, connection) => {
         if (err) throw err;
         console.log(`connected as id ${connection.threadId}`);
