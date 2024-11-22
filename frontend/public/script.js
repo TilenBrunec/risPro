@@ -22,8 +22,8 @@ function pokaziRecepte() {
         .then(response => response.json())
         .then(data => {
             const recipeList = document.getElementById('recipeList');
-            recipeList.innerHTML = ''; 
-            localStorage.setItem('recipes', JSON.stringify(data)); 
+            recipeList.innerHTML = '';
+            localStorage.setItem('recipes', JSON.stringify(data));
 
             // gres skozi
             recepti = data.map(recept => {
@@ -61,84 +61,54 @@ function pokaziRecepte() {
 .........................ZA PDF.........................
 /\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
 */
-async function   narediPDF(id) {
-    try {
-        const response = await fetch(`http://localhost:5000/recepti/${id}`);
-        const data = await response.json();
+function narediPDF(id) {
+        const response = fetch(`http://localhost:5000/recepti/${id}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = response.json();
 
         console.log(data);
 
-            let nazivpdf = data.naziv;
-            let sestavinepdf = data.sestavine;
-            let potekDelapfd = data.potekdela;
+        let nazivpdf = data.naziv;
+        let sestavinepdf = data.sestavine;
+        let potekDelapdf = data.potekdela;
 
-            
-        }catch(error) {
-        console.error('Error fetching data:', error);
-        }
-    
-    
-           
 
-    let props = {
 
-        nazivpdf: {naziv},
-        sestavinepdf: {sestavine},
-        potekDelapdf: {potekdela},
-    
-        outputType: jsPDFInvoiceTemplate.OutputType.Save,
-        returnJsPDFDocObject: true,
-        fileName: "Recept",
-        orientationLandscape: false,
-        compress: true,
-        logo: {
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
-            type: 'PNG', //optional, when src= data:uri (nodejs case)
-            width: 53.33, //aspect ratio = width/height
-            height: 26.66,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        stamp: {
-            inAllPages: true, //by default = false, just in the last page
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-            type: 'JPG', //optional, when src= data:uri (nodejs case)
-            width: 20, //aspect ratio = width/height
-            height: 20,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        business: {
-            name: "Recepti",
-            address: "Slovenia Maribor",
-            phone: "(+386) 070 11 11 111",
-            email: "tilen.brunec@student.um.si",
-            email_1: "gal.badrov@student.um.si",
-            
-            
-        },
-       
-        invoice: {
-            
-            label: "Invoice",
-            serial: "000000",
-            number: "0001",
-            date: "2021-01-01",
-            
-        },
-        footer: {
-            text: "The invoice is created on a computer and is valid without the signature and stamp.",
-        },
-        pageEnable: true,
-        pageLabel: "Page ",
-    };
 
-    var pdfObject = jsPDFInvoiceTemplate.default(props);
-    console.log("Object created:",pdfObject);
+        let props = {
+
+            nazivpdf: { nazivpdf },
+            sestavinepdf: { sestavinepdf },
+            potekDelapdf: { potekDelapdf },
+
+            outputType: jsPDFInvoiceTemplate.OutputType.Save,
+            returnJsPDFDocObject: true,
+            fileName: "Recept za " + nazivpdf,
+            orientationLandscape: false,
+            compress: true,
+            naziv: {
+                table: [
+                    [
+                        { title: data.naziv },
+                        { title: data.sestavine },
+                        { title: data.potekdela },
+                    ],
+                ]
+            },
+            footer: {
+                text: "created with jspdf-invoice-template. - Tilen Brunec & Gal Badrov",
+            },
+            pageEnable: true,
+            pageLabel: "Stran ",
+
+        };
+
+        //naredi pdf
+        var pdfObject = jsPDFInvoiceTemplate.default(props);
+        console.log("Object created:", pdfObject);
+
 }
 
 /* … 
@@ -149,18 +119,18 @@ async function   narediPDF(id) {
 
 function izbrisiRecept(id) {
     if (confirm("Ali ste prepričani, da želite izbrisati ta recept?")) {
-        fetch(`http://localhost:8080/recept/${id}`, { 
+        fetch(`http://localhost:8080/recept/${id}`, {
             method: 'DELETE'
         })
-        .then(response => {
-            if (response.ok) {
-                alert(`Recept z ID-jem ${id} je bil uspešno izbrisan.`);
-                pokaziRecepte(); // osvezissite
-            } else {
-                alert('Prišlo je do napake pri brisanju recepta.');
-            }
-        })
-        .catch(error => console.error('Napaka pri brisanju recepta:', error));
+            .then(response => {
+                if (response.ok) {
+                    alert(`Recept z ID-jem ${id} je bil uspešno izbrisan.`);
+                    pokaziRecepte(); // osvezissite
+                } else {
+                    alert('Prišlo je do napake pri brisanju recepta.');
+                }
+            })
+            .catch(error => console.error('Napaka pri brisanju recepta:', error));
     }
 }
 
@@ -179,24 +149,25 @@ function submitUpdate(id, event) {
 
     const naziv = document.getElementById(`naziv-${id}`).value;
     const sestavine = document.getElementById(`sestavine-${id}`).value;
-    const potekdela = document.getElementById(`potekdela-${id}`).value; 
+    const potekdela = document.getElementById(`potekdela-${id}`).value;
 
     // PUT
-    fetch(`http://localhost:8080/recept/${id}`, { method: 'PUT',headers: {'Content-Type': 'application/json'},
+    fetch(`http://localhost:8080/recept/${id}`, {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' },
 
 
 
-        body: JSON.stringify({ id, naziv, sestavine, potekdela }) 
+        body: JSON.stringify({ id, naziv, sestavine, potekdela })
     })
-    .then(response => {
-        if (response.ok) {
-            alert(`Recept ${naziv} je bil uspešno posodobljen.`);
-            pokaziRecepte(); // obnovi
-        } else {
-            alert('Prišlo je do napake pri posodabljanju recepta.');
-        }
-    })
-    .catch(error => console.error('Napaka pri posodabljanju recepta:', error));
+        .then(response => {
+            if (response.ok) {
+                alert(`Recept ${naziv} je bil uspešno posodobljen.`);
+                pokaziRecepte(); // obnovi
+            } else {
+                alert('Prišlo je do napake pri posodabljanju recepta.');
+            }
+        })
+        .catch(error => console.error('Napaka pri posodabljanju recepta:', error));
 }
 /* … 
 /\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
@@ -209,13 +180,13 @@ function dodajRecept(event) {
     // dobi iz forma podatke
     const naziv = document.getElementById('naziv').value;
     const sestavine = document.getElementById('sestavine').value;
-    const potekdela = document.getElementById('potekdela').value; 
+    const potekdela = document.getElementById('potekdela').value;
 
     // nareis objekt
     const recipe = {
         naziv: naziv,
         sestavine: sestavine,
-        potekdela: potekdela 
+        potekdela: potekdela
     };
 
     // POST 
@@ -224,21 +195,21 @@ function dodajRecept(event) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(recipe) 
+        body: JSON.stringify(recipe)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(alert(data.message || `Recept "${data.naziv}" je bil uspešno dodan!`)); 
-        console.log('Success:', data);
-        location.reload();// 
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Prišlo je do napake pri dodajanju recepta. Prosimo, preverite konzolo za več informacij.');
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(alert(data.message || `Recept "${data.naziv}" je bil uspešno dodan!`));
+            console.log('Success:', data);
+            location.reload();// 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Prišlo je do napake pri dodajanju recepta. Prosimo, preverite konzolo za več informacij.');
+        });
 }
