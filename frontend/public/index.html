@@ -21,7 +21,7 @@
     <br>
     <br>
     <hr>
-    
+
     <h1>Dodaj recept</h1>
 
 
@@ -29,18 +29,19 @@
     <form class="formTable" onsubmit="dodajRecept(event)">
       <label for="naziv">Recept za:</label><br>
       <input type="text" id="naziv" name="naziv" required><br>
-    
+
       <label for="sestavine">Sestavine:</label><br>
       <input type="text" id="sestavine" name="sestavine" required><br>
-    
+
       <label for="potekdela">Potek Dela:</label><br>
       <input type="text" id="potekdela" name="potekdela" required><br>
-    
+
       <button type="submit">Dodaj recept:</button>
-    
+
     </form>
            </div> 
     <script src="script.js" defer></script>
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
