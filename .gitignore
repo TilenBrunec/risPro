@@ -1,2 +1,2 @@
-backend/
+backend/src/main/resources/application.properties
 forntend/node_modules/

@@ -14,8 +14,8 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'root',
-    password: '',
-    database: 'recepti'
+    password: 'root',
+    database: 'RIS_recepti'
 });
 
 
