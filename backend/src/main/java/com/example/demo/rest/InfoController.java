@@ -1,7 +1,7 @@
 package com.example.demo.rest;
 
 import com.example.demo.dao.ReceptiRepository;
-import com.example.demo.vao.Recept;
+import com.example.demo.Recept;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
