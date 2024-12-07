@@ -65,66 +65,56 @@ class DemoApplicationTests {
 	@Test
 
 	void putReceptTest() {
-		// Preverimo, da je baza prazna
-		Assertions.assertEquals(0, repository.count());
+		Assertions.assertEquals(0, repository.count()); //
 
-		// Dodamo recept v bazo
 		Recept r = new Recept("burek", "meso", "peci");
-		repository.save(r);
+		repository.save(r);// Dodamo recept v bazo
 
-		// Preverimo, da je bil recept uspešno shranjen
-		Assertions.assertEquals(1, repository.count());
+		Assertions.assertEquals(1, repository.count());// Preverimo, da je bil recept uspešno shranjen
 
-		// Posodobimo podatke recepta
 		Recept updatedRecept = new Recept("Sirni burek", "sir", "peci");
-		updatedRecept.setId(r.getId()); // Nastavimo isti ID
+		updatedRecept.setId(r.getId()); // Nastavimo isti ID// Posodobimo podatke recepta
 
-		// Pokličemo posodobitveno metodo
 		repository.save(updatedRecept);
 
-		// Pridobimo posodobljen recept iz baze
-		Recept result = repository.findById(r.getId()).orElse(null);
+		Recept result = repository.findById(r.getId()).orElse(null);// Pridobimo posodobljen recept iz baze
 
-		// Preverimo, ali so podatki pravilno posodobljeni
+		// kaj so podatki pravilno posodobljeni
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals("Sirni burek", result.getNaziv());
 		Assertions.assertEquals("sir", result.getSestavine());
 		Assertions.assertEquals("peci", result.getPotekdela());
 
-		// Preverimo, da je število receptov v bazi še vedno 1
+		//preverimo ce je acutali se vedno 1
 		Assertions.assertEquals(1, repository.count());
 	}
 
 	//negativni scenarij
 	@Test
 	void putReceptTest2() {
-		// Preverimo, da je baza prazna
-		Assertions.assertEquals(0, repository.count());
+		Assertions.assertEquals(0, repository.count());// Preverimo, da je baza prazna
 
-		// Dodamo recept v bazo
 		Recept r = new Recept("burek", "meso", "peci");
-		repository.save(r);
+		repository.save(r);// Dodamo recept v bazo
 
-		// Preverimo, da je bil recept uspešno shranjen
-		Assertions.assertEquals(1, repository.count());
 
-		// Posodobimo podatke recepta
+		Assertions.assertEquals(1, repository.count());// Preverimo, da je bil recept uspešno shranjen
+
 		Recept updatedRecept = new Recept("Sirni burek", "sir", "peci");
-		updatedRecept.setId(r.getId()); // Nastavimo isti ID
+		updatedRecept.setId(r.getId()); // Nastavimo isti ID	// Posodobimo podatke recepta
 
-		// Pokličemo posodobitveno metodo
 		repository.save(updatedRecept);
 
-		// Pridobimo posodobljen recept iz baze
-		Recept result = repository.findById(r.getId()).orElse(null);
 
-		// Preverimo, ali so podatki pravilno posodobljeni
+		Recept result = repository.findById(r.getId()).orElse(null);// Pridobimo posodobljen recept iz baze
+
+		// kaj so podatki pravilno posodobljeni
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals("mesni burek", result.getNaziv());
 		Assertions.assertEquals("meso", result.getSestavine());
 		Assertions.assertEquals("peci", result.getPotekdela());
 
-		// Preverimo, da je število receptov v bazi še vedno 1
+		// preveri ce število receptov v bazi še vedno 1
 		Assertions.assertEquals(1, repository.count());
 	}
 

@@ -39,7 +39,7 @@ public class TestEnakostReceptov {
         void testStaEnakaPosebniChar2() {
             Recept r1 = new Recept("Pecivo z vanilijo", "Vanilija, moka, jajca", "Mešanje, peka");
             Recept r2 = new Recept("Pecivo z vanilijo", "Vänilija, moka, jajca", "Mešanje, peka");
-            Assertions.assertFalse(r1.staEnaka(r2)); // Različna posebna znaka (i in í)
+            Assertions.assertFalse(r1.staEnaka(r2)); // Različna posebna znaka (a in a)
         }
 
     }
