@@ -35,7 +35,8 @@ function pokaziRecepte() {
                     <h2>${recept.naziv}</h2>
                     Sestavine: ${recept.sestavine}<br><hr>
                     Potek Dela: ${recept.potekdela}<br>
-                    Stevilo porcij: <input type="number" id="stevilo_porcij"></input><button onclick="posodobiReceptPorcija()">Racunaj</button>
+                    Stevilo porcij: <input type="number" id="stevilo_porcij"></input><button onclick="posodobiReceptPorcija()">Racunaj</button><br>
+                    Posodobljena kolicina sestavin: <div id="nove_kolicine"></div>
 
                    
                     
