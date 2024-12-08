@@ -1,10 +1,4 @@
 # task za naredit
-Dodaj Ent: Sestavina
-Povezi sestavina in druge entitete
-dodaj razred sestavina
-Spremeni razred recept
-Dodaj endpoint 
-Preveri endpointe
 Spremeni frontend  formo
 
 
