@@ -34,7 +34,9 @@ function pokaziRecepte() {
                     <button type="button" onclick="posodobiRecept(${recept.id}, '${recept.naziv}', '${recept.sestavine}', '${recept.potekdela}');">Spremeni</button><br>
                     <h2>${recept.naziv}</h2>
                     Sestavine: ${recept.sestavine}<br><hr>
-                    Potek Dela: ${recept.potekdela}
+                    Potek Dela: ${recept.potekdela}<br>
+                    Stevilo porcij: <input type="number" id="stevilo_porcij"></input><button onclick="posodobiReceptPorcija()">Racunaj</button>
+
                    
                     
                     <!-- Hidden form -->
@@ -59,6 +61,23 @@ function pokaziRecepte() {
       });
     })
     .catch((error) => console.error("Error fetching data:", error));
+}
+
+/* … 
+/\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
+.........................ZA SPREMEMBO KOLICINE SESTAVIN.........................
+/\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
+*/
+
+function posodobiReceptPorcija() {
+  let stPorcij = document.getElementById("stevilo_porcij").value;
+    if(stPorcij != null){
+      //vstavi
+    }else{
+      document.getElementById("stevilo_porcij").value = 1;
+    }
+
+
 }
 
 /* … 
