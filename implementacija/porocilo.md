@@ -1,13 +1,31 @@
 # task za naredit
-Spremeni frontend  formo
 
-
-Dodaj v frontend  formo za kolicino 
-Dodaj funkcijo za racunanje kolicine glede na stevilo porcij
 
 # in porgres
 
 # task ki sma ga opravla
-
+spremeni form za fetchanje get receptov
+dodaj input za vpis stevila porcij
+dodaj gumb za prozenje funkcije
+dodaj funkcijo PosodobiReceptPorcija
+pridobi st porcij
+pridobi sestavine
+z regularnimi izrazi izppisi stevilke podatke in jih pomnoui z stevilom porcij
+updajtaj formo da se prikazejo posoodblene kolicine porcije
 
 # porocilo o napredku
+Sprememba obrazca za pridobivanje receptov (GET):
+
+Obrazec je bil prilagojen tako, da vključuje nov vhodni element za število porcij.
+Dodan je bil nov gumb za proženje funkcionalnosti posodobitve porcij.
+
+Dodajanje funkcije PosodobiReceptPorcija:
+
+Funkcija je bila implementirana za izračun novih količin sestavin.
+Z uporabo regularnih izrazov se številčne vrednosti v sestavinah pridobijo in pomnožijo z želenim številom porcij.
+Pridobivanje podatkov:
+
+Funkcija pridobi podatke o trenutnem številu porcij in seznam sestavin recepta.
+Posodobitev količin:
+
+Obrazec je bil posodobljen tako, da prikaže nove količine sestavin glede na posodobljeno število porcij.
