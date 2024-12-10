@@ -4,14 +4,14 @@
 # in porgres
 
 # task ki sma ga opravla
-spremeni form za fetchanje get receptov
-dodaj input za vpis stevila porcij
-dodaj gumb za prozenje funkcije
-dodaj funkcijo PosodobiReceptPorcija
-pridobi st porcij
+spremeni form za fetchanje get receptov    /1/10min
+dodaj input za vpis stevila porcij         /2/15min
+dodaj gumb za prozenje funkcije            /1/10min
+dodaj funkcijo PosodobiReceptPorcija       /2/15min
+pridobi st porcij                          /1/skupaj z spodnim/10min/
 pridobi sestavine
-z regularnimi izrazi izppisi stevilke podatke in jih pomnoui z stevilom porcij
-updajtaj formo da se prikazejo posoodblene kolicine porcije
+z regularnimi izrazi izppisi stevilke podatke in jih pomnoui z stevilom porcij /3/45min
+updajtaj formo da se prikazejo posoodblene kolicine porcije                 /2,5/25min
 
 # porocilo o napredku
 Sprememba obrazca za pridobivanje receptov (GET):
