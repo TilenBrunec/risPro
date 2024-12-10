@@ -32,8 +32,8 @@ function pokaziRecepte() {
                     <button type="button" onclick="izbrisiRecept(${recept.id});">Izbriši</button>
                     <button type="button" onclick="posodobiRecept(${recept.id}, '${recept.naziv}', '${recept.sestavine}', '${recept.potekdela}');">Spremeni</button><br>
                     <h2>${recept.naziv}</h2>
-                    Sestavine: ${recept.sestavine}<br><hr>
-                    Potek Dela: ${recept.potekdela}<br>
+                   <b> Sestavine:</b> ${recept.sestavine}<br><hr>
+                    <b> Potek Dela:</b> ${recept.potekdela}<br><hr>
                     Stevilo porcij: <input type="number" id="stevilo_porcij-${recept.id}" min="1" value="1"></input>
                     <button onclick="posodobiReceptPorcija('${recept.sestavine}', ${recept.id})">Racunaj</button><br>
                     Posodobljena kolicina sestavin: <div id="nove_kolicine-${recept.id}"></div>
