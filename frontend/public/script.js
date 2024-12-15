@@ -24,9 +24,11 @@ function pokaziRecepte() {
       const recipeList = document.getElementById("recipeList");
       recipeList.innerHTML = "";
       localStorage.setItem("recipes", JSON.stringify(data));
-
+let array = []
       recepti = data.map((recept) => {
         const listItem = document.createElement("li");
+        
+
         listItem.innerHTML = `
                     <button type="button" onclick="narediPDF(${recept.id});">Odpri z PDF</button>
                     <button type="button" onclick="izbrisiRecept(${recept.id});">Izbriši</button>
@@ -40,9 +42,8 @@ function pokaziRecepte() {
                 `;
         recipeList.appendChild(listItem);
 
-        console.log(recept.sestavine)
+        array.push(recept.sestavine)
         
-        sessionStorage.setItem(recept.id ,recept.sestavine)
 
 
         return {
@@ -52,7 +53,7 @@ function pokaziRecepte() {
           potekdela: recept.potekdela,
         };
       });
-      
+      sessionStorage.setItem("sestavine",array)
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
