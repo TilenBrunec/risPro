@@ -38,3 +38,44 @@ function prikaziSestavine() {
         document.getElementById("vseSestavine").innerHTML = "No ingredients found";
     }
 }
+
+function prikaziNajRecept() {
+    const najSestavine = sessionStorage.getItem("najpogosteSestavine");
+    
+    console.log(najSestavine);
+
+    // Regularni izraz, ki ujame prvo besedo (sestavino)
+    const najPopularnejsaSestavina = najSestavine.match(/^\d+\s(\w+|\w+-\w+)/);
+    const sestavina = najPopularnejsaSestavina ? najPopularnejsaSestavina[1] : ""; // Prva beseda v seznamu sestavin
+
+    console.log("Najbolj popularna sestavina: " + sestavina);
+
+    const izpisNajSestavin = document.getElementById("najsestavine");
+    izpisNajSestavin.innerHTML = `Najbolj priljubljena sestavina je: ${sestavina}`;
+
+    fetch("http://localhost:8080/recept")
+    .then((response) => response.json())
+    .then((data) => {
+        const recipeList = document.getElementById("najRecept");
+        recipeList.innerHTML = "";
+
+        const filteredRecipes = data.filter((recept) => {
+            return recept.sestavine.includes(sestavina); // filtriraj recepte, ki vsebujejo najpopularnejšo sestavino
+        });
+
+        filteredRecipes.forEach((recept) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <h2>${recept.naziv}</h2>
+                <b> Sestavine:</b> ${recept.sestavine}<br><hr>
+                <b> Potek Dela:</b> ${recept.potekdela}<br><hr>
+            `;
+            recipeList.appendChild(listItem);
+        });
+
+        if (filteredRecipes.length === 0) {
+            recipeList.innerHTML = "<li>Ni receptov, ki vsebujejo najpogostejšo sestavino.</li>";
+        }
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+}

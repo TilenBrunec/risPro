@@ -25,6 +25,7 @@ function pokaziRecepte() {
       recipeList.innerHTML = "";
       localStorage.setItem("recipes", JSON.stringify(data));
 let array = []
+let arrayReceptiSestavine = []
       recepti = data.map((recept) => {
         const listItem = document.createElement("li");
         
@@ -43,7 +44,7 @@ let array = []
         recipeList.appendChild(listItem);
 
         array.push(recept.sestavine)
-        
+        arrayReceptiSestavine.push([recept.naziv , recept.sestavine])
 
 
         return {
@@ -54,6 +55,7 @@ let array = []
         };
       });
       sessionStorage.setItem("sestavine",array)
+      sessionStorage.setItem("receptSesatavine", arrayReceptiSestavine)
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
