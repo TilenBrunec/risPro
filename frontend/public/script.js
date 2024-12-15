@@ -40,6 +40,11 @@ function pokaziRecepte() {
                 `;
         recipeList.appendChild(listItem);
 
+        console.log(recept.sestavine)
+        
+        sessionStorage.setItem(recept.id ,recept.sestavine)
+
+
         return {
           id: recept.id,
           naziv: recept.naziv,
@@ -47,6 +52,7 @@ function pokaziRecepte() {
           potekdela: recept.potekdela,
         };
       });
+      
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
