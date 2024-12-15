@@ -25,7 +25,6 @@ function pokaziRecepte() {
       recipeList.innerHTML = "";
       localStorage.setItem("recipes", JSON.stringify(data));
 
-      // gres skozi
       recepti = data.map((recept) => {
         const listItem = document.createElement("li");
         listItem.innerHTML = `
@@ -33,33 +32,45 @@ function pokaziRecepte() {
                     <button type="button" onclick="izbrisiRecept(${recept.id});">Izbriši</button>
                     <button type="button" onclick="posodobiRecept(${recept.id}, '${recept.naziv}', '${recept.sestavine}', '${recept.potekdela}');">Spremeni</button><br>
                     <h2>${recept.naziv}</h2>
-                    Sestavine: ${recept.sestavine}<br><hr>
-                    Potek Dela: ${recept.potekdela}
-                   
-                    
-                    <!-- Hidden form -->
-                    <form id="updateForm-${recept.id}" class="hide" onsubmit="submitUpdate(${recept.id}, event)">
-                        <label>Naziv:</label>
-                        <input type="text" id="naziv-${recept.id}" value="${recept.naziv}" required><br>
-                        <label>Sestavine:</label>
-                        <input type="text" id="sestavine-${recept.id}" value="${recept.sestavine}" required><br>
-                        <label>Potek Dela:</label>
-                        <input type="text" id="potekdela-${recept.id}" value="${recept.potekdela}" required>
-                        <button type="submit">Shrani</button>
-                    </form>
+                   <b> Sestavine:</b> ${recept.sestavine}<br><hr>
+                    <b> Potek Dela:</b> ${recept.potekdela}<br><hr>
+                    Stevilo porcij: <input type="number" id="stevilo_porcij-${recept.id}" min="1" value="1"></input>
+                    <button onclick="posodobiReceptPorcija('${recept.sestavine}', ${recept.id})">Racunaj</button><br>
+                    Posodobljena kolicina sestavin: <div id="nove_kolicine-${recept.id}"></div>
                 `;
         recipeList.appendChild(listItem);
 
+        console.log(recept.sestavine)
+        
+        sessionStorage.setItem(recept.id ,recept.sestavine)
+
+
         return {
+          id: recept.id,
           naziv: recept.naziv,
           sestavine: recept.sestavine,
           potekdela: recept.potekdela,
-          element: listItem,
         };
       });
+      
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
+
+function posodobiReceptPorcija(sestavine, id) {
+  const stPorcij = document.getElementById(`stevilo_porcij-${id}`).value; // da kao dobis st porci
+  if (stPorcij) {
+    
+    const modifiedString = sestavine.replace(/\d+/g, (match) => Number(match) * stPorcij); //regularni izraz za stringe za posodobitev
+    console.log("Modified Ingredients:", modifiedString);
+
+    
+    document.getElementById(`nove_kolicine-${id}`).innerHTML = modifiedString; // posodobi
+  } else {
+    alert("Prosim vnesite število porcij!");
+  }
+}
+
 
 /* … 
 /\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
