@@ -29,3 +29,36 @@ Funkcija pridobi podatke o trenutnem številu porcij in seznam sestavin recepta.
 Posodobitev količin:
 
 Obrazec je bil posodobljen tako, da prikaže nove količine sestavin glede na posodobljeno število porcij.
+
+
+
+# KANBAN
+-------------------------------------------------------------------------------
+/       Razbitje na vec manjsih taksov          /tocke/  /čas izvajanja/  /prioriteta/
+
+
+naredi div kje se bo vsebina izpisala            /1/      5 min			nizka
+
+dodaj naslov modre barve z velikostjo 3rem       /1/      5 min			nizka
+
+dodaj gumb modre barve za porzenje funkcije     /1,2/     8 min			nizka
+
+iz baze iz tabele recept pridobi vse sestavine   /2/      10 min		visoka
+
+implementiraj funkcijo ki bo prestela koliko     /6/      45 min		visoka
+ krat se ena sestacina pojavi
+
+izpisi koliko krat se pojavi kera sestavina v    /3,5/     25 min		srednja
+vseh receptih skupaj
+
+izpisi vse in koliko krat se ponovijo             /3,5/     25 min		srednja
+
+ublikuj procelje za lepsi uporabniski vmesnik     /2/       15 min		nizka
+
+shrani vse sestavine v sstorage		           	  /1/      5 min		visoka	
+
+preberi iz sstoriga in ugotovi katera je prva     /2/      10min		visoka
+
+izpisi tisto ki je najpopularnejsa               /2,5/     20 min		visoka
+
+se enkrat pridobi vse recepte                    /2/       10min		visoka
