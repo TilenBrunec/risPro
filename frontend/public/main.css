@@ -141,7 +141,7 @@ button {
 .Zgodovina {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 60%;
     background-color: white;
     padding: 40px;
     border-radius: 10px;
@@ -149,7 +149,7 @@ button {
 }
 
 .h2-zgodovina {
-    color: blue;
+    color: #4CAF50;
     font-size: 3rem;
     margin-bottom: 15px;
 }
@@ -161,7 +161,7 @@ button {
 }
 
 .button-zgodovina {
-    background-color: #007bff;
+    background-color: #4CAF50;
     color: #fff;
     font-size: 1rem;
     padding: 10px 20px;
@@ -172,7 +172,7 @@ button {
 }
 
 .button-zgodovina:hover {
-    background-color: #0056b3;
+    background-color: #4CAF50;
 }
 
 

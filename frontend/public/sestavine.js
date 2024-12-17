@@ -5,27 +5,29 @@ function prikaziSestavine() {
     
 
     if (VseSest) {
-        // Match all parts after the second dash in each segment
-        const sestavineList = VseSest.split(",").map(item => {
-            const match = item.match(/(?:[^-]*-){2}(.+)/); // Match everything after the second dash
-            return match ? match[1].trim() : ""; // Extract the captured group and trim whitespace
+        
+        const sestavineList = VseSest.split(",").map(item => { // splitas vse sestavine
+            const match = item.match(/(?:[^-]*-){2}(.+)/); // regularni izraz da vzame vun sestavino
+            return match ? match[1].trim() : ""; 
         });
 
-        // Count occurrences of each ingredient using a map or object
-        const countMap = sestavineList.reduce((acc, sestavina) => {
-            acc[sestavina] = (acc[sestavina] || 0) + 1;
+        //rez je countMap ki ma kluc pa vrednost
+        const countMap = sestavineList.reduce((acc, sestavina) => {// z metodo reduce presteje ponovitve
+            acc[sestavina] = (acc[sestavina] || 0) + 1;  //Če obstaja, poveča število pojavitev za 1.
             return acc;
-        }, {});
+        }, {}); //acc je prvo {}
+      
 
-        // Sort ingredients by count in descending order
-        const sortedIngredients = Object.keys(countMap).sort((a, b) => countMap[b] - countMap[a]);
+
+        //sortira tote count mape ki so{kluc:vrednost} po kluču tisit ki ma vecji index je visje
+        const sortedIngredients = Object.keys(countMap).sort((prva, druga) => countMap[druga] - countMap[prva]);//jih sortira po counteru
 
         // za izpis v vsako vrstico
         const sestavineOutput = sortedIngredients.map(sestavina => {
             return `${countMap[sestavina]} ${sestavina}<br>`;
         }).join('');
 
-        // za sesion storage
+        // za sesion storage 
         const sestavinestorage = sortedIngredients.map(sestavina => {
             return `${countMap[sestavina]} ${sestavina}, `;
         }).join('');
@@ -44,9 +46,9 @@ function prikaziNajRecept() {
     
     console.log(najSestavine);
 
-    // Regularni izraz, ki ujame prvo besedo (sestavino)
+    // Regularni izraz, ki ujame prvo besedo 
     const najPopularnejsaSestavina = najSestavine.match(/^\d+\s(\w+|\w+-\w+)/);
-    const sestavina = najPopularnejsaSestavina ? najPopularnejsaSestavina[1] : ""; // Prva beseda v seznamu sestavin
+    const sestavina = najPopularnejsaSestavina ? najPopularnejsaSestavina[1] : ""; // vzame vun prvo .Prva beseda v seznamu sestavin
 
     console.log("Najbolj popularna sestavina: " + sestavina);
 
