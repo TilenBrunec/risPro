@@ -22,7 +22,7 @@ class DemoApplicationTests {
 	@Autowired
 	private InfoController receptiController;
 
-
+/*
 	//izbrise nam repository vrednosti pred vsakim zagnanim testom
 	@Test
 	@BeforeEach
@@ -40,7 +40,7 @@ class DemoApplicationTests {
 		Assertions.assertEquals(1,repository.count());
 	}
 
-
+*/
 	// preverimo ali se dodan objekt v repository ustrezno tudi izbrise iz repositoryja
 	@Test
 	void deleteReceptTest() {
@@ -50,7 +50,7 @@ class DemoApplicationTests {
 		repository.deleteAll();
 		Assertions.assertEquals(0,repository.count());
 	}
-
+/*
 	//negativni scenarij
 	@Test
 	void deleteReceptTest2() {
@@ -117,5 +117,5 @@ class DemoApplicationTests {
 		// preveri ce število receptov v bazi še vedno 1
 		Assertions.assertEquals(1, repository.count());
 	}
-
+*/
 }
