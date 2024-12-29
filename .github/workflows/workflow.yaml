@@ -45,7 +45,7 @@ jobs:
         working-directory: frontend
 
       - name: Build
-        run: npm run build
+        run: npm start
         working-directory: frontend
 
   unit_test:
