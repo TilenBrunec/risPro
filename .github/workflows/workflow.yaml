@@ -44,8 +44,8 @@ jobs:
         run: npm ci
         working-directory: frontend
 
-      - name: Build
-        run: npm start
+      - name: Run Frontend (Development Mode)
+        run: timeout 10s npm start
         working-directory: frontend
 
   unit_test:
@@ -67,7 +67,7 @@ jobs:
       - name: Setup MySQL
         run: |
           sudo /etc/init.d/mysql start
-          mysql -u root -e "CREATE DATABASE IF NOT EXISTS recepti;"
+          mysql -u root -e "CREATE DATABASE IF NOT EXISTS recepti;" user='root' password=''
 
       - name: Unit tests
         run: mvn test
