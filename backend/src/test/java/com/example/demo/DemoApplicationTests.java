@@ -22,7 +22,7 @@ class DemoApplicationTests {
 	@Autowired
 	private InfoController receptiController;
 
-/*
+
 	//izbrise nam repository vrednosti pred vsakim zagnanim testom
 	@Test
 	@BeforeEach
@@ -40,7 +40,7 @@ class DemoApplicationTests {
 		Assertions.assertEquals(1,repository.count());
 	}
 
-*/
+
 	// preverimo ali se dodan objekt v repository ustrezno tudi izbrise iz repositoryja
 	@Test
 	void deleteReceptTest() {
@@ -50,16 +50,8 @@ class DemoApplicationTests {
 		repository.deleteAll();
 		Assertions.assertEquals(0,repository.count());
 	}
-/*
-	//negativni scenarij
-	@Test
-	void deleteReceptTest2() {
-		Assertions.assertEquals(0,repository.count());
-		Recept r = new Recept( "burek","meso","kucaj");
-		repository.save(r);
-		repository.deleteAll();
-		Assertions.assertEquals(1,repository.count());
-	}
+
+
 
 	//preverimo spreminjanje podatkov v ze obstojecih primerih receptov
 	@Test
@@ -89,33 +81,6 @@ class DemoApplicationTests {
 		Assertions.assertEquals(1, repository.count());
 	}
 
-	//negativni scenarij
-	@Test
-	void putReceptTest2() {
-		Assertions.assertEquals(0, repository.count());// Preverimo, da je baza prazna
-
-		Recept r = new Recept("burek", "meso", "peci");
-		repository.save(r);// Dodamo recept v bazo
 
 
-		Assertions.assertEquals(1, repository.count());// Preverimo, da je bil recept uspešno shranjen
-
-		Recept updatedRecept = new Recept("Sirni burek", "sir", "peci");
-		updatedRecept.setId(r.getId()); // Nastavimo isti ID	// Posodobimo podatke recepta
-
-		repository.save(updatedRecept);
-
-
-		Recept result = repository.findById(r.getId()).orElse(null);// Pridobimo posodobljen recept iz baze
-
-		// kaj so podatki pravilno posodobljeni
-		Assertions.assertNotNull(result);
-		Assertions.assertEquals("mesni burek", result.getNaziv());
-		Assertions.assertEquals("meso", result.getSestavine());
-		Assertions.assertEquals("peci", result.getPotekdela());
-
-		// preveri ce število receptov v bazi še vedno 1
-		Assertions.assertEquals(1, repository.count());
-	}
-*/
 }
