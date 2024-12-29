@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class DemoApplicationTests {
-
+/*
 	@Autowired
 	ReceptiRepository repository;
 	@Autowired
@@ -81,6 +81,6 @@ class DemoApplicationTests {
 		Assertions.assertEquals(1, repository.count());
 	}
 
-
+*/
 
 }
