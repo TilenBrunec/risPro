@@ -1,14 +1,24 @@
-const searchInput = document.querySelector("[data-search]");
+const searchInput = document.getElementById("searchInput");
 
 let recepti = [];
 
+
 searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase();
-  console.log(recepti);
+  const value = e.target.value.toLowerCase(); 
+  console.log("Filtriram po:", value);
+
   recepti.forEach((recept) => {
-    const jevidna = recept.naziv.toLowerCase().includes(value);
-    recept.element.classList.toggle("hide", !jevidna);
-    console.log(recept);
+    
+    const jevidna =
+      recept.naziv.toLowerCase().includes(value) ||
+      recept.sestavine.toLowerCase().includes(value);
+
+    if (recept.element) {
+      
+      recept.element.classList.toggle("hide", !jevidna);
+    } else {
+      console.log("Recept nima pripadajočega elementa DOM.", recept);
+    }
   });
 });
 
@@ -34,12 +44,26 @@ let arrayReceptiSestavine = []
                     <button type="button" onclick="narediPDF(${recept.id});">Odpri z PDF</button>
                     <button type="button" onclick="izbrisiRecept(${recept.id});">Izbriši</button>
                     <button type="button" onclick="posodobiRecept(${recept.id}, '${recept.naziv}', '${recept.sestavine}', '${recept.potekdela}');">Spremeni</button><br>
+
                     <h2>${recept.naziv}</h2>
                    <b> Sestavine:</b> ${recept.sestavine}<br><hr>
                     <b> Potek Dela:</b> ${recept.potekdela}<br><hr>
                     Stevilo porcij: <input type="number" id="stevilo_porcij-${recept.id}" min="1" value="1"></input>
                     <button onclick="posodobiReceptPorcija('${recept.sestavine}', ${recept.id})">Racunaj</button><br>
                     Posodobljena kolicina sestavin: <div id="nove_kolicine-${recept.id}"></div>
+
+                    <!-- Skriti obrazec za posodobitev recepta -->
+          <form id="updateForm-${recept.id}" class="hide" onsubmit="submitUpdate(${recept.id}, event)">
+            <label for="naziv-${recept.id}">Naziv:</label>
+            <input type="text" id="naziv-${recept.id}" value="${recept.naziv}" /><br>
+
+            <label for="sestavine-${recept.id}">Sestavine:</label>
+            <textarea id="sestavine-${recept.id}">${recept.sestavine}</textarea><br>
+
+            <label for="potekdela-${recept.id}">Potek dela:</label>
+            <textarea id="potekdela-${recept.id}">${recept.potekdela}</textarea><br>
+            <button type="submit">Shrani</button>
+          </form>
                 `;
         recipeList.appendChild(listItem);
 
@@ -52,6 +76,7 @@ let arrayReceptiSestavine = []
           naziv: recept.naziv,
           sestavine: recept.sestavine,
           potekdela: recept.potekdela,
+          element: listItem,
         };
       });
       sessionStorage.setItem("sestavine",array)
