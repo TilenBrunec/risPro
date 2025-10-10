@@ -2,19 +2,16 @@ const searchInput = document.getElementById("searchInput");
 
 let recepti = [];
 
-
 searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase(); 
+  const value = e.target.value.toLowerCase();
   console.log("Filtriram po:", value);
 
   recepti.forEach((recept) => {
-    
     const jevidna =
       recept.naziv.toLowerCase().includes(value) ||
       recept.sestavine.toLowerCase().includes(value);
 
     if (recept.element) {
-      
       recept.element.classList.toggle("hide", !jevidna);
     } else {
       console.log("Recept nima pripadajočega elementa DOM.", recept);
@@ -34,11 +31,10 @@ function pokaziRecepte() {
       const recipeList = document.getElementById("recipeList");
       recipeList.innerHTML = "";
       localStorage.setItem("recipes", JSON.stringify(data));
-let array = []
-let arrayReceptiSestavine = []
+      let array = [];
+      let arrayReceptiSestavine = [];
       recepti = data.map((recept) => {
         const listItem = document.createElement("li");
-        
 
         listItem.innerHTML = `
                     <button type="button" onclick="narediPDF(${recept.id});">Odpri z PDF</button>
@@ -67,9 +63,8 @@ let arrayReceptiSestavine = []
                 `;
         recipeList.appendChild(listItem);
 
-        array.push(recept.sestavine)
-        arrayReceptiSestavine.push([recept.naziv , recept.sestavine])
-
+        array.push(recept.sestavine);
+        arrayReceptiSestavine.push([recept.naziv, recept.sestavine]);
 
         return {
           id: recept.id,
@@ -79,8 +74,8 @@ let arrayReceptiSestavine = []
           element: listItem,
         };
       });
-      sessionStorage.setItem("sestavine",array)
-      sessionStorage.setItem("receptSesatavine", arrayReceptiSestavine)
+      sessionStorage.setItem("sestavine", array);
+      sessionStorage.setItem("receptSesatavine", arrayReceptiSestavine);
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
@@ -88,17 +83,17 @@ let arrayReceptiSestavine = []
 function posodobiReceptPorcija(sestavine, id) {
   const stPorcij = document.getElementById(`stevilo_porcij-${id}`).value; // da kao dobis st porci
   if (stPorcij) {
-    
-    const modifiedString = sestavine.replace(/\d+/g, (match) => Number(match) * stPorcij); //regularni izraz za stringe za posodobitev
+    const modifiedString = sestavine.replace(
+      /\d+/g,
+      (match) => Number(match) * stPorcij
+    ); //regularni izraz za stringe za posodobitev
     console.log("Modified Ingredients:", modifiedString);
 
-    
     document.getElementById(`nove_kolicine-${id}`).innerHTML = modifiedString; // posodobi
   } else {
     alert("Prosim vnesite število porcij!");
   }
 }
-
 
 /* … 
 /\//\//\//\//\//\//\//\//\...................................../\//\//\//\//\//\//\//\//\//\//\//\//\//\//\//
@@ -107,53 +102,53 @@ function posodobiReceptPorcija(sestavine, id) {
 */
 
 async function narediPDF(id) {
-    try {
-        // Fetch the recipe data
-        const response = await fetch(`http://localhost:5000/recepti/${id}`);
-        if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.statusText}`);
-        }
-
-        const dataArray = await response.json();
-        console.log("Fetched data array:", dataArray);
-
-        // Check if the array is valid and contains data
-        if (!Array.isArray(dataArray) || dataArray.length === 0) {
-            throw new Error("No recipe data found for the given ID.");
-        }
-
-        // Extract the recipe object (assuming single entry in array)
-        const data = dataArray[0];
-        console.log("Extracted recipe object:", data);
-
-        // Import jsPDF
-        const { jsPDF } = window.jspdf;
-
-        // Create a new PDF document
-        const doc = new jsPDF();
-
-        // Add title
-        doc.setFontSize(20);
-        doc.text("Recept", 10, 10);
-
-        // Add Recipe Name
-        doc.setFontSize(14);
-        doc.text(`Naziv: ${data.naziv}`, 10, 20);
-
-        // Add Ingredients
-        doc.setFontSize(12);
-        doc.text("Sestavine:", 10, 30);
-        doc.text(data.sestavine, 20, 40);
-
-        // Add Preparation Steps
-        doc.text("Potek dela:", 10, 60);
-        doc.text(data.potekdela, 20, 70);
-
-        // Save the PDF with the recipe name
-        doc.save(`Recept_${data.naziv}.pdf`);
-    } catch (error) {
-        console.error('Error generating PDF:', error);
+  try {
+    // Fetch the recipe data
+    const response = await fetch(`http://localhost:5001/recepti/${id}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching data: ${response.statusText}`);
     }
+
+    const dataArray = await response.json();
+    console.log("Fetched data array:", dataArray);
+
+    // Check if the array is valid and contains data
+    if (!Array.isArray(dataArray) || dataArray.length === 0) {
+      throw new Error("No recipe data found for the given ID.");
+    }
+
+    // Extract the recipe object (assuming single entry in array)
+    const data = dataArray[0];
+    console.log("Extracted recipe object:", data);
+
+    // Import jsPDF
+    const { jsPDF } = window.jspdf;
+
+    // Create a new PDF document
+    const doc = new jsPDF();
+
+    // Add title
+    doc.setFontSize(20);
+    doc.text("Recept", 10, 10);
+
+    // Add Recipe Name
+    doc.setFontSize(14);
+    doc.text(`Naziv: ${data.naziv}`, 10, 20);
+
+    // Add Ingredients
+    doc.setFontSize(12);
+    doc.text("Sestavine:", 10, 30);
+    doc.text(data.sestavine, 20, 40);
+
+    // Add Preparation Steps
+    doc.text("Potek dela:", 10, 60);
+    doc.text(data.potekdela, 20, 70);
+
+    // Save the PDF with the recipe name
+    doc.save(`Recept_${data.naziv}.pdf`);
+  } catch (error) {
+    console.error("Error generating PDF:", error);
+  }
 }
 
 /* … 
