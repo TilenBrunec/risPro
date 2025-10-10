@@ -67,13 +67,13 @@ sql
 Copy the code:
 ```sql
 INSERT INTO recept (naziv, sestavine, potekdela) VALUES 
-('Spaghetti Carbonara', 'spaghetti, pancetta, eggs, Parmesan, black pepper', 'Boil spaghetti, cook pancetta, mix eggs with cheese, combine everything and serve.'),
-('Chicken Curry', 'chicken, curry powder, coconut milk, onions, garlic, ginger', 'Saute onions, garlic, ginger; add chicken and curry powder; pour in coconut milk and simmer.'),
-('Caesar Salad', 'lettuce, chicken breast, croutons, Parmesan, Caesar dressing', 'Grill chicken, mix lettuce with dressing, add chicken and croutons, sprinkle Parmesan.'),
-('Beef Tacos', 'ground beef, taco seasoning, tortillas, lettuce, cheese, salsa', 'Cook beef with seasoning, warm tortillas, assemble with lettuce, cheese, and salsa.'),
-('Tomato Soup', 'tomatoes, onions, garlic, olive oil, basil, cream', 'Saute onions and garlic, add tomatoes and basil, blend and add cream before serving.'),
-('Grilled Cheese Sandwich', 'bread, cheese, butter', 'Butter bread, add cheese, grill both sides until cheese melts.'),
-('Apple Pie', 'apples, flour, butter, sugar, cinnamon', 'Prepare dough, fill with apples and cinnamon, bake until golden brown.');
+('Spaghetti Carbonara', '100g-spaghetti 50g-pancetta 2-egg 30g-Parmesan 1tsp-black pepper', 'Boil spaghetti, cook pancetta, mix eggs with cheese, combine everything and serve.'),
+('Chicken Curry', '200g-chicken 2tsp-curry powder 150ml-coconut milk 1-onion 2-cloves-garlic 1tsp-ginger', 'Saute onions, garlic, ginger; add chicken and curry powder; pour in coconut milk and simmer.'),
+('Caesar Salad', '100g-lettuce 150g-chicken breast 30g-croutons 20g-Parmesan 50ml-Caesar dressing', 'Grill chicken, mix lettuce with dressing, add chicken and croutons, sprinkle Parmesan.'),
+('Beef Tacos', '200g-ground beef 1tbsp-taco seasoning 4-tortillas 50g-lettuce 50g-cheese 30g-salsa', 'Cook beef with seasoning, warm tortillas, assemble with lettuce, cheese, and salsa.'),
+('Tomato Soup', '400g-tomatoes 1-onion 2-cloves-garlic 1tbsp-olive oil 5g-basil 50ml-cream', 'Saute onions and garlic, add tomatoes and basil, blend and add cream before serving.'),
+('Grilled Cheese Sandwich', '2-slices-bread 50g-cheese 10g-butter', 'Butter bread, add cheese, grill both sides until cheese melts.'),
+('Apple Pie', '3-apples 200g-flour 100g-butter 50g-sugar 1tsp-cinnamon', 'Prepare dough, fill with apples and cinnamon, bake until golden brown.');
 ```
 
 ## 3. Java Spring Boot Backend Setup
@@ -253,6 +253,7 @@ Konstruktor je posebna metoda, ki se uporablja za inicializacijo novega objekta 
 Ob ustvarjanju novega objekta razreda Recept konstruktor prejme tri vrednosti: naziv, sestavine, in potek dela.
 
 Te vrednosti shrani v ustrezne atribute objekta, s čimer zagotovi, da vsebuje vse bistvene informacije za predstavitev recepta.
+
 
 
 
