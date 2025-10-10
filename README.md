@@ -22,6 +22,7 @@ IntelliJ IDEA Ultimate https://www.jetbrains.com/idea/download/?source=google&me
 Visual Studio Code https://code.visualstudio.com/download
 
 XAMPP for MySQL and phpMyAdmin https://www.apachefriends.org/download.html
+DBngin is replacement for XAMPP on macOS
 
 Git (optional, for version control) https://git-scm.com/downloads
 
@@ -253,6 +254,7 @@ Konstruktor je posebna metoda, ki se uporablja za inicializacijo novega objekta 
 Ob ustvarjanju novega objekta razreda Recept konstruktor prejme tri vrednosti: naziv, sestavine, in potek dela.
 
 Te vrednosti shrani v ustrezne atribute objekta, s čimer zagotovi, da vsebuje vse bistvene informacije za predstavitev recepta.
+
 
 
 
