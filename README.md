@@ -82,12 +82,12 @@ Open IntelliJ IDEA Ultimate and navigate to the backend-springboot folder inside
 In src/main/resources, open application.properties and add your MySQL credentials as follows:
 properties
 Copy the code:
-
+```Java
 spring.datasource.url=jdbc:mysql://localhost:3306/recepti           //spring.datasource.url=jdbc:mysql://localhost:[your sql port]/recepti   
 spring.datasource.username=your_mysql_username                      // replace with 'root'
 spring.datasource.password=your_mysql_password                      // if you don't have a password, just delete this line
 spring.jpa.hibernate.ddl-auto=update
-
+```
 To start the Spring Boot application:
 Open the main class file (e.g., DemoApplication.java) in IntelliJ.
 Run the application by clicking Run.
@@ -253,6 +253,7 @@ Konstruktor je posebna metoda, ki se uporablja za inicializacijo novega objekta 
 Ob ustvarjanju novega objekta razreda Recept konstruktor prejme tri vrednosti: naziv, sestavine, in potek dela.
 
 Te vrednosti shrani v ustrezne atribute objekta, s čimer zagotovi, da vsebuje vse bistvene informacije za predstavitev recepta.
+
 
 
 
