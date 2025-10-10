@@ -65,7 +65,7 @@ You can also insert some random data.
 Run the following SQL code to insert data in recept table in the recepti database:
 sql
 Copy the code:
-
+```sql
 INSERT INTO recept (naziv, sestavine, potekdela) VALUES 
 ('Spaghetti Carbonara', 'spaghetti, pancetta, eggs, Parmesan, black pepper', 'Boil spaghetti, cook pancetta, mix eggs with cheese, combine everything and serve.'),
 ('Chicken Curry', 'chicken, curry powder, coconut milk, onions, garlic, ginger', 'Saute onions, garlic, ginger; add chicken and curry powder; pour in coconut milk and simmer.'),
@@ -74,7 +74,7 @@ INSERT INTO recept (naziv, sestavine, potekdela) VALUES
 ('Tomato Soup', 'tomatoes, onions, garlic, olive oil, basil, cream', 'Saute onions and garlic, add tomatoes and basil, blend and add cream before serving.'),
 ('Grilled Cheese Sandwich', 'bread, cheese, butter', 'Butter bread, add cheese, grill both sides until cheese melts.'),
 ('Apple Pie', 'apples, flour, butter, sugar, cinnamon', 'Prepare dough, fill with apples and cinnamon, bake until golden brown.');
-
+```
 
 ## 3. Java Spring Boot Backend Setup
 
@@ -253,6 +253,7 @@ Konstruktor je posebna metoda, ki se uporablja za inicializacijo novega objekta 
 Ob ustvarjanju novega objekta razreda Recept konstruktor prejme tri vrednosti: naziv, sestavine, in potek dela.
 
 Te vrednosti shrani v ustrezne atribute objekta, s čimer zagotovi, da vsebuje vse bistvene informacije za predstavitev recepta.
+
 
 
 
