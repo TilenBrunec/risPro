@@ -117,7 +117,7 @@ bash or powershell
 Copy the code:
 npm start
 
-The Node.js will start on http://localhost:5000.
+The Node.js will start on http://localhost:5001.
 
 You can end running node frontend by pressing -- Ctrl c --
 And restart it by typin npm start again, in bash or powershell
@@ -254,6 +254,7 @@ Konstruktor je posebna metoda, ki se uporablja za inicializacijo novega objekta 
 Ob ustvarjanju novega objekta razreda Recept konstruktor prejme tri vrednosti: naziv, sestavine, in potek dela.
 
 Te vrednosti shrani v ustrezne atribute objekta, s čimer zagotovi, da vsebuje vse bistvene informacije za predstavitev recepta.
+
 
 
 
