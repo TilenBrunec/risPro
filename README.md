@@ -46,7 +46,10 @@ Run the following SQL code to set up the recept table in the recepti database:
 sql
 Copy the code:
 
-``` CREATE DATABASE `recepti`;
+To create the database and table, run the following SQL commands:
+
+```sql
+CREATE DATABASE `recepti`;
 
 USE `recepti`;
 
@@ -55,7 +58,8 @@ CREATE TABLE recept (
   naziv VARCHAR(255) NOT NULL,
   sestavine VARCHAR(255) NOT NULL,
   potekdela VARCHAR(255) NOT NULL
-); ```
+);
+```
 
 You can also insert some random data.
 Run the following SQL code to insert data in recept table in the recepti database:
@@ -249,5 +253,6 @@ Konstruktor je posebna metoda, ki se uporablja za inicializacijo novega objekta 
 Ob ustvarjanju novega objekta razreda Recept konstruktor prejme tri vrednosti: naziv, sestavine, in potek dela.
 
 Te vrednosti shrani v ustrezne atribute objekta, s čimer zagotovi, da vsebuje vse bistvene informacije za predstavitev recepta.
+
 
 
