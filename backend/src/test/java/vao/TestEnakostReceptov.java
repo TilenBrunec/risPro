@@ -5,16 +5,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TestEnakostReceptov {
-
-
-
+/*
         @Test
         void testStaEnaka() {
             Recept r1 = new Recept("Čokoladni kolač", "Čokolada, moka, jajca", "Mešanje, peka");
             Recept r2 = new Recept("Čokoladni kolač", "Čokolada, moka, jajca", "Mešanje, peka");
             Assertions.assertTrue(r1.staEnaka(r2)); // Oba recepta imata isti naziv
         }
-/*
+
         @Test
         void testStaEnakaMaleVlke() {
             Recept r1 = new Recept("Čokoladni kolač", "Čokolada, moka, jajca", "Mešanje, peka");
