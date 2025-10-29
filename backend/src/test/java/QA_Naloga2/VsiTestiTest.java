@@ -38,6 +38,11 @@ public class VsiTestiTest {
         closeable.close();
     }
 
+    // POMOC
+    // when --> za simuliranje --> kaj naj mock naredi
+    // verify --> preveri ali je mock naredil kaj smo zeleli z when
+    // assertX --> preveri resnicnost X besede
+
     // ==================================================
     // GET /recept
     // ==================================================
